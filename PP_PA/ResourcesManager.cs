@@ -8,7 +8,8 @@ namespace PP_PA
 {
     class ResourcesManager
     {
-        private int coins;
+        //Each player starts with 40 coins to build their first farm
+        private int coins = 40;
         private int n_Moves;
         private int n_Infantry;
         private int n_Cavalry;
@@ -98,7 +99,11 @@ namespace PP_PA
             {
                 entities.Add(ge);
                 n_Moves = entities.Count;
-                if (ge is Cavalry)
+                if (ge is Building)
+                {
+                    coins -= (ge as Building).CostToBuild;
+                }
+                else if (ge is Cavalry)
                     n_Cavalry--;
                 else if (ge is Artillery)
                     n_Artillery--;
@@ -196,26 +201,8 @@ namespace PP_PA
 
         public Building GetRandomBuilding<Type>()
         {
-            int sizeOfList = 0;
             List<Type> list = entities.OfType<Type>().ToList();
-
-            /*switch (strBuilding)
-            {
-                case "artillery_factory":
-                    sizeOfList = entities.OfType<ArtilleryFactory>().Count();
-                    //number = CountArtilleryFactories();
-                    break;
-                case "barrack":
-                    sizeOfList = entities.OfType<Barrack>().Count();
-                    //number = CountBarracks();
-                    break;
-                case "stable":
-                    sizeOfList = entities.OfType<Stable>().Count();
-                    //number = CountStables();
-                    break;
-            }*/
-
-            Building building = null;
+            
             Random rnd = new Random();
             int rndNumber = rnd.Next(0, list.Count);
             
@@ -286,6 +273,33 @@ namespace PP_PA
         {
             get { return coins; }
             set { coins = value; }
+        }
+
+        public bool HasBuildingClose(Building building)
+        {
+            int radius = 2;
+
+            char firstLetter = building.Position.Letter;
+            int firstNumber = building.Position.Number;
+
+            char lastLetter = building.OptinalCoordinates.Last().Letter;
+            int lastNumber = building.OptinalCoordinates.Last().Number;
+
+            for (int i = firstLetter - radius; i < lastLetter + radius; i++)
+            {
+                for (int j = firstNumber - radius; j < lastNumber + radius; j++)
+                {
+                    Coordinate coordinate = new Coordinate((char)i, j);
+                    if ((coordinate.Letter >= 'A' && coordinate.Letter <= 'Z') && (coordinate.Number >= 0 && coordinate.Number <= 16) && building.Distance(coordinate) <= radius)
+                    {
+                        //The coordinate is only free if the player has the coordinate free and if the enemy has it free too!
+                        if (IsCoordinateAvailable(coordinate) != null && IsCoordinateAvailable(coordinate) is Building)
+                            return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

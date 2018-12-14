@@ -15,14 +15,15 @@ namespace PP_PA
 
         public Unit(Coordinate position, ConsoleColor color) : base(position, color) { }
 
-        public bool CanMove(int distance, int movingPoints)
+        public int CanMove(int distance, int movingPoints)
         {
-            if (distance * movePerCell <= movingPoints)
+            int distanceMove = distance * movePerCell;
+            if (distanceMove <= movingPoints)
             {
-                return true;
+                return distanceMove;
             }
 
-            return false;
+            return 0;
         }
 
         

@@ -18,14 +18,9 @@ namespace PP_PA
         {
             gm = new GameManager();
 
-            p1 = new Player("Player 1");
-            p2 = new Player("Player 2");
+            p1 = gm.Player1;
+            p2 = gm.Player2;
 
-            p1.Color = ConsoleColor.Blue;
-            p2.Color = ConsoleColor.Red;
-
-            gm.SetPlayers(p1, p2);
-            
             int key = 0;
             
             do
@@ -77,6 +72,7 @@ namespace PP_PA
             string unit = null;
             string unitToTrain = null;
             string optionalCoordinate = null;
+            string isNewTurn = null;
 
             Field field = new Field(gm);
             field.Show();
@@ -86,12 +82,14 @@ namespace PP_PA
             {
                 gm.PlayerTurn = p1;
             }
-            
 
+            
             do
             {
-                
-                n_moves = gm.PlayerTurn.Resources.N_Moves;
+                if(isNewTurn == null)
+                    n_moves = gm.PlayerTurn.Resources.N_Moves;
+                else if(isNewTurn == "YES")
+                    n_moves = gm.PlayerTurn.Resources.N_Moves;
 
                 int nBarracks = gm.PlayerTurn.Resources.CountBarracks();
                 int nStables = gm.PlayerTurn.Resources.CountStables();
@@ -240,8 +238,10 @@ namespace PP_PA
                                     Unit u = ge as Unit;
 
                                     int distance = ge.Distance(moveCoordinate);
-                                    if (u.CanMove(distance, n_moves))
+                                    int moveDistance = u.CanMove(distance, n_moves);
+                                    if (moveDistance > 0)
                                     {
+                                        n_moves -= moveDistance;
                                         gm.PlayerTurn.Resources.MoveEntity(ge, moveCoordinate);
                                         //field.Update();
                                     }
@@ -276,9 +276,11 @@ namespace PP_PA
                                 {
                                     Unit u = ge as Unit;
 
-                                    int distance = ge.Distance( moveCoordinate);
-                                    if (u.CanMove(distance, n_moves))
+                                    int distance = ge.Distance(moveCoordinate);
+                                    int moveDistance = u.CanMove(distance, n_moves);
+                                    if (moveDistance > 0)
                                     {
+                                        n_moves -= moveDistance;
                                         gm.PlayerTurn.Resources.MoveEntity(ge, moveCoordinate);
                                         //field.Update();
                                     }
@@ -313,10 +315,11 @@ namespace PP_PA
                     }
 
                     Console.WriteLine("Are you done? Do you want to finish the turn? (Yes or No)");
-                    string isNewTurn = Console.ReadLine().ToUpper();
+                    isNewTurn = Console.ReadLine().ToUpper();
 
                     if (isNewTurn == "YES")
                     {
+                        isNewTurn = null;
                         gm.NewTurn();
                     }
                 }
@@ -383,10 +386,11 @@ namespace PP_PA
                     }
 
                     Console.WriteLine("Are you done? Do you want to finish the turn? (Yes or No)");
-                    string isNewTurn = Console.ReadLine().ToUpper();
+                    isNewTurn = Console.ReadLine().ToUpper();
 
                     if (isNewTurn == "YES")
                     {
+                        isNewTurn = null;
                         gm.NewTurn();
                     }
                 }
@@ -424,10 +428,11 @@ namespace PP_PA
                     }
 
                     Console.WriteLine("Are you done? Do you want to finish the turn? (Yes or No)");
-                    string isNewTurn = Console.ReadLine().ToUpper();
+                    isNewTurn = Console.ReadLine().ToUpper();
 
                     if (isNewTurn == "YES")
                     {
+                        isNewTurn = null;
                         gm.NewTurn();
                     }
                     
@@ -485,53 +490,6 @@ namespace PP_PA
 
                             }
                         }
-                        
-                        /*
-                        if (gm.PlayerTurn.Resources.IsCoordinateAvailable(addCoordinate.Value) != null 
-                            || gm.PlayerTurn.Resources.IsCoordinateAvailable(addCoordinate.Value.Right()) != null)
-                        {
-                            errorMessage = "There's a unit on that coordinate!";
-                        }
-                        else if (gm.PlayerTurn == p1 && p2.Resources.IsCoordinateAvailable(addCoordinate.Value) != null 
-                                                     || p2.Resources.IsCoordinateAvailable(addCoordinate.Value.Right()) != null)
-                        {
-                            errorMessage = "Enemy collision!";
-                        }  
-                        else if (gm.PlayerTurn == p2 && p1.Resources.IsCoordinateAvailable(addCoordinate.Value) != null
-                                                     || p1.Resources.IsCoordinateAvailable(addCoordinate.Value.Right()) != null)
-                        {
-                            errorMessage = "Enemy collision!";
-                        }
-                        else
-                        {
-                            Building building = null;
-                            if (ge is Cavalry)
-                            {
-                                building = gm.PlayerTurn.Resources.GetRandomBuilding<Stable>();
-                            }
-                            else if (ge is Artillery)
-                            {
-                                building = gm.PlayerTurn.Resources.GetRandomBuilding<ArtilleryFactory>();
-                            }
-                            else if (ge is Infantry)
-                            {
-                                building = gm.PlayerTurn.Resources.GetRandomBuilding<Barrack>();
-                            }
-                            if (gm.PlayerTurn.Resources.CanPlaceAroundBuilding(building) != null)
-                            {
-                                Coordinate? coordinateFree = gm.PlayerTurn.Resources.CanPlaceAroundBuilding(building);
-                                if (coordinateFree.HasValue)
-                                {
-                                    ge.Position = coordinateFree.Value;
-                                    gm.PlayerTurn.Resources.AddEntity(ge);
-                                }
-                                else
-                                {
-                                    errorMessage = "I can't place the unit around the building!";
-                                }
-                                    
-                            }
-                        }*/
 
                         unit = null;
 
@@ -581,7 +539,20 @@ namespace PP_PA
                         }
                         else
                         {
-                            gm.PlayerTurn.Resources.AddEntity(ge);
+                            Building b = ge as Building;
+                            if (gm.PlayerTurn.Resources.Coins >= b.CostToBuild)
+                            {
+                                bool hasBuildingClose = gm.PlayerTurn.Resources.HasBuildingClose(b);
+                                if (hasBuildingClose)
+                                    gm.PlayerTurn.Resources.AddEntity(ge);
+                                else
+                                    errorMessage = "There's no building around that coordinate!";
+                            }
+                            else
+                            {
+                                errorMessage = "You don't have enough coins to build that building!";
+                            }
+                            
                         }
                         strBuilding = null;
                         
@@ -597,10 +568,11 @@ namespace PP_PA
                     }
 
                     Console.WriteLine("Are you done? Do you want to finish the turn? (Yes or No)");
-                    string isNewTurn = Console.ReadLine().ToUpper();
+                    isNewTurn = Console.ReadLine().ToUpper();
 
                     if (isNewTurn == "YES")
                     {
+                        isNewTurn = null;
                         gm.NewTurn();
                     }
                     

@@ -14,12 +14,7 @@ namespace PP_PA
         private int fieldSizeJ; //26 * 2 + 2  54
 
         private GameManager gm;
-
-
-        //TODO: Rever este player, não deve ser preciso pois já temos o GameManager;
-        private Player p1;
-        private Player p2;
-
+        
         
         private Hashtable letterCoordinates;
         //private char[] letterCoordinates;
@@ -126,7 +121,7 @@ namespace PP_PA
                     {
                         if (Utils.IsDivisibleByX(i, 2))
                         {
-                            DrawLineUpRowTeste(number++, fieldSizeJ);
+                            DrawLineUpRow(number++, fieldSizeJ);
                             break;
                         }
                         else
@@ -142,115 +137,11 @@ namespace PP_PA
         {
             Create();
         }
-        //TODO: This function just needs to be removed!
-        public void NewField()
+        
+        public void Update()
         {
-            Console.Clear();
-            //Console.WriteLine(Char.ConvertFromUtf32(2017));
-            char letter = 'A';
-            int number = 0;
-            for (int i = 0; i <= fieldSizeI; i++)
-            {
-                for (int j = 0; j <= fieldSizeJ; j++)
-                {
-
-                    //If is the first line then will check which column is
-                    if (i == 0)
-                    {
-                        if (j >= 0 && j <= 2)
-                        {
-                            Console.Write(" ");
-                            letterCoordinates[j] = '-';
-
-                        }
-                        else if (!Utils.IsDivisibleByX(j, 2))
-                        {
-                            letterCoordinates[j] = letter;
-                            Console.Write(letter++);
-
-                        }
-                        //If j == fieldSizeJ that means we are at the last number of the row, so we go to the next line
-                        else if (j == fieldSizeJ)
-                        {
-                            Console.WriteLine();
-                        }
-                        else
-                        {
-                            Console.Write(" ");
-                        }
-
-                    }
-                    else if (i == 1)
-                    {
-                        DrawFirstLine(fieldSizeJ);
-                        break;
-
-                    }
-                    else if (i == fieldSizeI)
-                    {
-                        DrawLastLine(fieldSizeJ);
-                        break;
-                    }
-                    else
-                    {
-                        if (Utils.IsDivisibleByX(i, 2))
-                        {
-                            //type = type.ToLower();
-                            DrawLineUpRowTeste(number++,fieldSizeJ);
-                            //DrawLineUpRow(number++, fieldSizeJ, ge, type, isBuilding);
-                            break;
-                        }
-                        else
-                        {
-                            DrawCrossRow(fieldSizeJ);
-                            break;
-                        }
-                    }
-                }
-            }
-            
+            Create();
         }
-        //TODO: This function just needs to call the Create method!
-        public bool Update()
-        {
-            NewField();
-
-            return true;
-        }
-        //TODO: This function needs to be remove!
-        /*
-        public bool Update(GameEntity ge, Coordinate optionalCoordinate)
-        {
-            GameEntity newGe = new GameEntity();
-            //Dúvida ao professor
-            newGe = (GameEntity)ge.Clone();
-            newGe.Position = optionalCoordinate;
-            Move(ge, newGe);
-
-            return true;
-        }*/
-        //TODO: This function needs to be remove!
-        /*
-        private bool Move(GameEntity ge, GameEntity newGe)
-        {
-            
-            DeleteEntity(ge);
-            DrawEntity(newGe);
-            return true;
-        }*/
-        //TODO: This function needs to be remove!
-        /*private bool DrawEntity(GameEntity ge)
-        {
-            bool isBuilding = ge is Building ? true : false;
-            NewField("Add",ge, isBuilding);
-            return true;
-        }
-        //TODO: This function needs to be remove!
-        public bool DeleteEntity(GameEntity ge)
-        {
-            NewField("Delete",ge);
-            return true;
-        }*/
 
         //Function to show the first line
         public void DrawFirstLine(int x)
@@ -280,34 +171,9 @@ namespace PP_PA
             }
             Console.WriteLine();
         }
-        //TODO: This function needs to be deleted!
-        //Function to show the row with linesUp, it's called for the first time that field is created.
-        public void DrawLineUpRow(int x, int n)
-        {
-            if (x < 10)
-                Console.Write(" {0}", x);
-            else
-                Console.Write("{0}", x);
-
-            for (int j = 0; j < n; j++)
-            {
-                
-                if (Utils.IsDivisibleByX(j, 2))
-                {
-                    Console.Write(lineUp);
-                }
-                else
-                {
-                    savedPositions[x, j] = " ";
-                    Console.Write(savedPositions[x,j]);
-                }
-
-            }
-            Console.WriteLine();
-        }
         //TODO: This function needs to renamed!
         //This function is called when is needed to add/update a unit on the field
-        public void DrawLineUpRowTeste(int x, int n)
+        public void DrawLineUpRow(int x, int n)
         {
             Coordinate addCoordinate = new Coordinate();
             

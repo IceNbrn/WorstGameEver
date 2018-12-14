@@ -12,7 +12,6 @@ namespace PP_PA
         private Coordinate position;
         private string icon;
         private ConsoleColor color;
-        private int cost;
 
         public GameEntity(){ }
         

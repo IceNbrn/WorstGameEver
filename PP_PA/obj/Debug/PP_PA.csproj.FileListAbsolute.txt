@@ -40,3 +40,10 @@ C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\obj\Debug\PP_PA.csprojAssembl
 C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\obj\Debug\PP_PA.csproj.CoreCompileInputs.cache
 C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\obj\Debug\PP_PA.exe
 C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\obj\Debug\PP_PA.pdb
+D:\User\Code\GitHub\WGV\PP_PA\bin\Debug\PP_PA.exe.config
+D:\User\Code\GitHub\WGV\PP_PA\bin\Debug\PP_PA.exe
+D:\User\Code\GitHub\WGV\PP_PA\bin\Debug\PP_PA.pdb
+D:\User\Code\GitHub\WGV\PP_PA\obj\Debug\PP_PA.csprojAssemblyReference.cache
+D:\User\Code\GitHub\WGV\PP_PA\obj\Debug\PP_PA.csproj.CoreCompileInputs.cache
+D:\User\Code\GitHub\WGV\PP_PA\obj\Debug\PP_PA.exe
+D:\User\Code\GitHub\WGV\PP_PA\obj\Debug\PP_PA.pdb

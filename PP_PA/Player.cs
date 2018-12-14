@@ -12,9 +12,10 @@ namespace PP_PA
         private ConsoleColor color;
         private ResourcesManager resources;
 
-        public Player(string _username)
+        public Player(string username, ConsoleColor color)
         {
-            username = _username;
+            this.username = username;
+            this.color = color;
             resources = new ResourcesManager();
         }
 

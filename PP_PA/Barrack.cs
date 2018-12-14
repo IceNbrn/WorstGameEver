@@ -10,14 +10,12 @@ namespace PP_PA
     {
         //This cost is in coins
         private int costToTrainInfantry = 10;
-        //How many Artilleries can have
-        private int capacity = 5;
 
         public Barrack(Coordinate position, List<Coordinate> otherCoordinates, ConsoleColor color) : base(position, otherCoordinates, color)
         {
             base.Health = 60;
             base.Icon = "B";
-            base.costToBuild = 20;
+            base.CostToBuild = 20;
         }
 
         public int Work(int numberOfInfantries)
@@ -25,10 +23,6 @@ namespace PP_PA
             return numberOfInfantries * costToTrainInfantry;
         }
 
-        public int Capacity
-        {
-            get { return capacity; }
-            set { capacity = value; }
-        }
+        public int Capacity { get; set; } = 5;
     }
 }

@@ -12,12 +12,19 @@ namespace PP_PA
         private Player playerTurn;
         private bool gameFinished;
         private Player p1, p2;
-        
 
-        public void SetPlayers(Player _p1, Player _p2)
+
+        public GameManager()
         {
-            p1 = _p1;
-            p2 = _p2;
+            p1 = new Player("Player 1",ConsoleColor.Blue);
+            p2 = new Player("Player 2", ConsoleColor.Red);
+            
+        }
+
+        public void UpdatePlayers(Player p1, Player p2)
+        {
+            this.p1 = p1;
+            this.p2 = p2;
         }
 
         public int NewTurn()

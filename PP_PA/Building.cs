@@ -8,8 +8,6 @@ namespace PP_PA
 {
     public class Building : GameEntity
     {
-        protected int costToBuild;
-        private Coordinate optinalCoordinate;
         private List<Coordinate> optinalCoordinates;
         
         
@@ -17,10 +15,6 @@ namespace PP_PA
             : base(position, color)
         {
             this.optinalCoordinates = optinalCoordinates;
-        }
-        public Coordinate OptinalCoordinate
-        {
-            get { return optinalCoordinate; }
         }
         public List<Coordinate> OptinalCoordinates
         {
@@ -39,5 +33,7 @@ namespace PP_PA
 
             return null;
         }
+
+        public int CostToBuild { get; set; }
     }
 }
