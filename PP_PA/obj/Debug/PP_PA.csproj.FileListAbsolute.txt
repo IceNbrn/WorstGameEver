@@ -1,0 +1,42 @@
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.exe.config
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.exe
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.pdb
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.csprojAssemblyReference.cache
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.csproj.CoreCompileInputs.cache
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.exe
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.pdb
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.exe.config
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.exe
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.pdb
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.csprojAssemblyReference.cache
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.csproj.CoreCompileInputs.cache
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.exe
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Dev\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.pdb
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.exe.config
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.exe
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.pdb
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.csprojAssemblyReference.cache
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.csproj.CoreCompileInputs.cache
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.exe
+C:\Users\bruno\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.pdb
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.csprojAssemblyReference.cache
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.csproj.CoreCompileInputs.cache
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.exe
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\obj\Debug\PP_PA.pdb
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.exe.config
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.exe
+D:\User\OneDriveIPCA\OneDrive - Instituto Politécnico do Cávado e do Ave\IPCA\Disciplinas\PP\PP_PA\PP_PA\bin\Debug\PP_PA.pdb
+D:\User\Code\GitHub\WGV\PP_PA\PP_PA\bin\Debug\PP_PA.exe.config
+D:\User\Code\GitHub\WGV\PP_PA\PP_PA\bin\Debug\PP_PA.exe
+D:\User\Code\GitHub\WGV\PP_PA\PP_PA\bin\Debug\PP_PA.pdb
+D:\User\Code\GitHub\WGV\PP_PA\PP_PA\obj\Debug\PP_PA.csprojAssemblyReference.cache
+D:\User\Code\GitHub\WGV\PP_PA\PP_PA\obj\Debug\PP_PA.csproj.CoreCompileInputs.cache
+D:\User\Code\GitHub\WGV\PP_PA\PP_PA\obj\Debug\PP_PA.exe
+D:\User\Code\GitHub\WGV\PP_PA\PP_PA\obj\Debug\PP_PA.pdb
+C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\bin\Debug\PP_PA.exe.config
+C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\bin\Debug\PP_PA.exe
+C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\bin\Debug\PP_PA.pdb
+C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\obj\Debug\PP_PA.csprojAssemblyReference.cache
+C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\obj\Debug\PP_PA.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\obj\Debug\PP_PA.exe
+C:\Users\bruno\Documents\Github\School\PP_PA\PP_PA\obj\Debug\PP_PA.pdb
