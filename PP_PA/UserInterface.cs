@@ -32,6 +32,9 @@ namespace PP_PA
                 Console.WriteLine("0 - EXIT");
                 Console.WriteLine("--------------------------");
 
+                if(gm.GameFinished)
+                    ShowWinnerUI();
+
                 key = int.Parse(Console.ReadLine());
 
                 switch (key)
@@ -106,7 +109,8 @@ namespace PP_PA
                 Console.WriteLine("What is your next move?");
                 Console.WriteLine("────────────────────────────────────────────");
                 Console.WriteLine("ADD");
-                Console.WriteLine("TRAIN UNITS");
+                if(nBarracks > 0 || nStables > 0 || nArtilleryFactories > 0)
+                    Console.WriteLine("TRAIN UNITS");
                 Console.WriteLine("MOVE");
                 Console.WriteLine("ATTACK");
                 Console.WriteLine("────────────────────────────────────────────");
@@ -349,7 +353,14 @@ namespace PP_PA
                                 {
                                     if (enemyEntity.TakeDamage(playerUnit.AttackValue))
                                     {
+                                        gm.PlayerTurn.Resources.Score += enemyEntity.Score;
                                         enemy.Resources.RemoveEntity(enemyEntity);
+                                        if (enemyEntity is PlayerBase)
+                                        {
+                                            gm.SetGameOver();
+                                            return;
+                                        }
+                                        
                                         //gm.PlayerTurn.Resources.MoveEntity(playerEntity, moveCoordinate);
                                     }
                                     
@@ -408,6 +419,9 @@ namespace PP_PA
                         case "ARTILLERY":
                             buildingToWork = "artillery_factory";
                             break;
+                        default:
+                            errorMessage = "You need to specify the unity!";
+                            break;
                     }
                     
                     if (gm.PlayerTurn.Resources.Coins <= 0)
@@ -457,6 +471,9 @@ namespace PP_PA
                                 if (gm.PlayerTurn.Resources.N_Artillery> 0)
                                     ge = new Artillery(addCoordinate.Value, gm.PlayerTurn.Color);
                                 break;
+                            default:
+                                errorMessage = "You need to specify the unit!";
+                                continue;
                         }
 
                         if (ge != null)
@@ -521,6 +538,9 @@ namespace PP_PA
                             case "ARTILLERY FACTORY":
                                 ge = new ArtilleryFactory(addCoordinate.Value, listCoordinates, gm.PlayerTurn.Color);
                                 break;
+                            default:
+                                errorMessage = "You need to specify the building!";
+                                continue;
                         }
                         if (gm.PlayerTurn.Resources.IsCoordinateAvailable(addCoordinate.Value) != null
                             || gm.PlayerTurn.Resources.IsCoordinateAvailable(secondCoordinate) != null)
@@ -580,9 +600,24 @@ namespace PP_PA
 
                 
                 
-            } while (option != "EXIT");
+            } while (option != "EXIT" || !gm.GameFinished);
         }
-        
+
+        public void ShowWinnerUI()
+        {
+            string exit = "";
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("───────────────────────────────");
+                Console.WriteLine("The winner is {0}", gm.PlayerTurn.Username);
+                Console.WriteLine("Score : {0}", gm.PlayerTurn.Resources.Score);
+                Console.WriteLine("───────────────────────────────");
+                exit = Console.ReadLine().ToUpper();
+
+            } while (exit != "EXIT");
+            
+        }
 
         
     }

@@ -8,12 +8,13 @@ namespace PP_PA
 {
     class ResourcesManager
     {
-        //Each player starts with 40 coins to build their first farm
-        private int coins = 40;
+        //Each player starts with 20 coins to build their first farm
+        private int coins = 20;
         private int n_Moves;
         private int n_Infantry;
         private int n_Cavalry;
         private int n_Artillery;
+        public int Score { get; set; }
 
         private List<GameEntity> entities;
 
@@ -208,6 +209,8 @@ namespace PP_PA
             
             return list[rndNumber] as Building;
         }
+
+        
 
         public int CountStables()
         {

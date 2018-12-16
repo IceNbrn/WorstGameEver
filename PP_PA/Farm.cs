@@ -15,7 +15,7 @@ namespace PP_PA
         {
             base.Health = 24;
             base.Icon = "F";
-            base.CostToBuild = 40;
+            base.CostToBuild = 0;
         }
 
         public int Work()

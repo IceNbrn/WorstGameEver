@@ -12,6 +12,7 @@ namespace PP_PA
         private Coordinate position;
         private string icon;
         private ConsoleColor color;
+        public int Score { get; set; }
 
         public GameEntity(){ }
         
@@ -20,6 +21,7 @@ namespace PP_PA
         {
             this.color = color;
             this.position = position;
+            Score = 10;
         }
 
         public int Health

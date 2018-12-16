@@ -13,6 +13,8 @@ namespace PP_PA
         //n columns
         private int fieldSizeJ; //26 * 2 + 2  54
 
+        private bool createBase = true;
+
         private GameManager gm;
         
         
@@ -171,7 +173,6 @@ namespace PP_PA
             }
             Console.WriteLine();
         }
-        //TODO: This function needs to renamed!
         //This function is called when is needed to add/update a unit on the field
         public void DrawLineUpRow(int x, int n)
         {
@@ -193,8 +194,9 @@ namespace PP_PA
                 {
                     letterInNumber = j + 2;
                 }
+                /*
                 //This is where it's added the inicial farm to each player ResourcesManager
-                if ((x == 0 || x == 16) && !Utils.IsDivisibleByX(j, 2) && (char)letterCoordinates[letterInNumber] == 'A')
+                if ((x == 0 || x == 16) && !Utils.IsDivisibleByX(j, 2) && (char)letterCoordinates[letterInNumber] == 'A' && createBase)
                 {
                     addCoordinate = new Coordinate((char)letterCoordinates[letterInNumber], x);
 
@@ -222,7 +224,7 @@ namespace PP_PA
                         
                 }
                 //This is where it's added the PlayerBase to each player ResourcesManager
-                if ((x == 0 || x == 15) && !Utils.IsDivisibleByX(j, 2) && (char)letterCoordinates[letterInNumber] == middleNumber)
+                if ((x == 0 || x == 15) && !Utils.IsDivisibleByX(j, 2) && (char)letterCoordinates[letterInNumber] == middleNumber && createBase)
                 {
                     addCoordinate = new Coordinate((char)letterCoordinates[letterInNumber], x);
 
@@ -247,11 +249,12 @@ namespace PP_PA
                         gm.Player1.Resources.AddEntity(pb);
                     }else if (x == 15)
                     {
+                        createBase = false;
                         pb = new PlayerBase(addCoordinate, listCoordinates, gm.Player2.Color);
                         gm.Player2.Resources.AddEntity(pb);
                     }
                         
-                }
+                }*/
                 if (Utils.IsDivisibleByX(j, 2))
                 {
                     Console.Write(lineUp);
