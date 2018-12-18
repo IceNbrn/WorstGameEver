@@ -200,9 +200,9 @@ namespace PP_PA
             return null;
         }
 
-        public Building GetRandomBuilding<Type>()
+        public Building GetRandomBuilding<T>()
         {
-            List<Type> list = entities.OfType<Type>().ToList();
+            List<T> list = entities.OfType<T>().ToList();
             
             Random rnd = new Random();
             int rndNumber = rnd.Next(0, list.Count);

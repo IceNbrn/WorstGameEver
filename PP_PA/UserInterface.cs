@@ -125,6 +125,7 @@ namespace PP_PA
 
                     string[] coordinateSplit = coordinate.Split(',');
 
+                    //TODO: Needs a try here
                     char letter = Convert.ToChar(coordinateSplit[0]);
                     int number = Int32.Parse(coordinateSplit[1]);
 

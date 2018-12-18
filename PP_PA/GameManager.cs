@@ -9,15 +9,18 @@ namespace PP_PA
     class GameManager
     {
         private int turn = 0;
+
         private Player playerTurn;
-        public bool GameFinished { get; set; }
+        
         private Player winner;
         private Player p1, p2;
+
+        public bool GameFinished { get; set; }
 
 
         public GameManager()
         {
-            p1 = new Player("Player 1",ConsoleColor.Blue);
+            p1 = new Player("Player 1", ConsoleColor.Blue);
             p2 = new Player("Player 2", ConsoleColor.Red);
             
             CreatePlayerBase(p1, "player 1");
@@ -33,6 +36,7 @@ namespace PP_PA
             GameFinished = true;
 
         }
+
         public void CreatePlayerBase(Player p,string player)
         {
             Coordinate addCoordinate = new Coordinate();
