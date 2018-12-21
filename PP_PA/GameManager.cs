@@ -17,30 +17,35 @@ namespace PP_PA
 
         public bool GameFinished { get; set; }
 
+        public ScoreTableManager ScoreTableManager { get; set; }
 
         public GameManager()
         {
             p1 = new Player("Player 1", ConsoleColor.Blue);
             p2 = new Player("Player 2", ConsoleColor.Red);
             
-            CreatePlayerBase(p1, "player 1");
-            CreatePlayerBase(p2, "player 2");
+            CreatePlayerBase(p1, true);
+            CreatePlayerBase(p2, false);
 
-            CreatePlayerFarm(p1, "player 1");
-            CreatePlayerFarm(p2, "player 2");
+            CreatePlayerFarm(p1, true);
+            CreatePlayerFarm(p2, false);
+
+            ScoreTableManager = new ScoreTableManager();
+            
         }
 
         public void SetGameOver()
         {
             this.winner = playerTurn;
             GameFinished = true;
-
+            ScoreTableManager.AddScoreToFile(playerTurn);
         }
+        
 
-        public void CreatePlayerBase(Player p,string player)
+        public void CreatePlayerBase(Player p,bool isP1)
         {
             Coordinate addCoordinate = new Coordinate();
-            if (player == "player 1")
+            if (isP1)
                 addCoordinate = new Coordinate('M', 0);
             else
                 addCoordinate = new Coordinate('M', 15);
@@ -62,10 +67,10 @@ namespace PP_PA
             p.Resources.AddEntity(pb);
         }
 
-        public void CreatePlayerFarm(Player p, string player)
+        public void CreatePlayerFarm(Player p, bool isP1)
         {
             Coordinate addCoordinate = new Coordinate();
-            if (player == "player 1")
+            if (isP1)
                 addCoordinate = new Coordinate('A', 0);
             else
                 addCoordinate = new Coordinate('A', 16);
@@ -82,13 +87,7 @@ namespace PP_PA
             Farm farm = new Farm(addCoordinate, listCoordinates, p.Color);
             p.Resources.AddEntity(farm);
         }
-
-        public void UpdatePlayers(Player p1, Player p2)
-        {
-            this.p1 = p1;
-            this.p2 = p2;
-        }
-
+        
         public int NewTurn()
         {
             turn++;

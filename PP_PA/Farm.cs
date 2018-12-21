@@ -9,7 +9,6 @@ namespace PP_PA
     class Farm : Building
     {
         private int coinsRate = 20;
-        
 
         public Farm(Coordinate position, List<Coordinate> otherCoordinates, ConsoleColor color) : base(position, otherCoordinates,color)
         {

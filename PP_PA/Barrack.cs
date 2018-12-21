@@ -11,6 +11,8 @@ namespace PP_PA
         //This cost is in coins
         private int costToTrainInfantry = 10;
 
+        public int Capacity { get; set; } = 5;
+
         public Barrack(Coordinate position, List<Coordinate> otherCoordinates, ConsoleColor color) : base(position, otherCoordinates, color)
         {
             base.Health = 60;
@@ -22,7 +24,5 @@ namespace PP_PA
         {
             return numberOfInfantries * costToTrainInfantry;
         }
-
-        public int Capacity { get; set; } = 5;
     }
 }

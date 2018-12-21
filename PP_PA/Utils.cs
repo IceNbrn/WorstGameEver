@@ -8,6 +8,8 @@ namespace PP_PA
 {
     public static class Utils
     {
+        public static string dataFolderPath = "data/";
+        public static string scoreTableFilePath = dataFolderPath + "scoretable.txt";
         //This function is used to see if is a even number, if it return true
         public static bool IsDivisibleByX(int x, int y)
         {

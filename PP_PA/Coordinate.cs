@@ -17,24 +17,6 @@ namespace PP_PA
             this.number = number;
         }
         
-        public Coordinate Right()
-        {
-            return new Coordinate(++letter,number);
-        }
-        public Coordinate Up()
-        {
-            return new Coordinate(letter, ++number);
-        }
-        //TODO: This is not needed, because we already got get&set!
-        public char GetLetter()
-        {
-            return letter;
-        }
-
-        public int GetNumber()
-        {
-            return number;
-        }
 
         public char Letter
         {

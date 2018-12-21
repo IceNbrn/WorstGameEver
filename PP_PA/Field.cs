@@ -12,15 +12,11 @@ namespace PP_PA
         private int fieldSizeI; //16 * 2 + 3  35
         //n columns
         private int fieldSizeJ; //26 * 2 + 2  54
-
-        private bool createBase = true;
-
+        
         private GameManager gm;
         
         
         private Hashtable letterCoordinates;
-        //private char[] letterCoordinates;
-        private string[,] savedPositions;
 
         string line = Char.ConvertFromUtf32(9472);
         string lineUp = Char.ConvertFromUtf32(9474);
@@ -42,8 +38,6 @@ namespace PP_PA
             fieldSizeJ = 26 * 2 + 2;
 
             letterCoordinates = new Hashtable();
-            //letterCoordinates = new char[fieldSizeJ];
-            savedPositions = new string['Z'+1,fieldSizeJ];
             
         }
 
@@ -54,8 +48,6 @@ namespace PP_PA
             fieldSizeJ = columns * 2 + 2;
 
             letterCoordinates = new Hashtable();
-            //letterCoordinates = new char[fieldSizeJ];
-            savedPositions = new string['Z', fieldSizeJ];
             
         }
 
@@ -67,11 +59,6 @@ namespace PP_PA
             }
 
             return true;
-        }
-
-        public void AddPlayerBase()
-        {
-            //gm.Player1.Resources.
         }
         
         private void Create()
@@ -135,6 +122,7 @@ namespace PP_PA
                 }
             }
         }
+
         public void Show()
         {
             Create();
@@ -176,9 +164,6 @@ namespace PP_PA
         //This function is called when is needed to add/update a unit on the field
         public void DrawLineUpRow(int x, int n)
         {
-            Coordinate addCoordinate = new Coordinate();
-            
-
             int letterInNumber = 0;
 
             if (x < 10)
@@ -189,72 +174,13 @@ namespace PP_PA
 
             for (int j = 0; j <= n - 2; j++)
             {
-                int middleNumber = (('A' + 'Z') / 2);
                 if (j < 52)
                 {
                     letterInNumber = j + 2;
                 }
-                /*
-                //This is where it's added the inicial farm to each player ResourcesManager
-                if ((x == 0 || x == 16) && !Utils.IsDivisibleByX(j, 2) && (char)letterCoordinates[letterInNumber] == 'A' && createBase)
-                {
-                    addCoordinate = new Coordinate((char)letterCoordinates[letterInNumber], x);
-
-                    char firstLetter = addCoordinate.Letter;
-                    int firstNumber = addCoordinate.Number;
-
-                    List<Coordinate> listCoordinates = new List<Coordinate>();
-
-                    Coordinate secondCoordinate = new Coordinate(++firstLetter, firstNumber);
-
-                    listCoordinates.Add(secondCoordinate);
-
-                    Farm farm;
-
-                    if (x == 0)
-                    {
-                        farm = new Farm(addCoordinate, listCoordinates, gm.Player1.Color);
-                        gm.Player1.Resources.AddEntity(farm);
-                    }
-                    else if (x == 16)
-                    {
-                        farm = new Farm(addCoordinate, listCoordinates, gm.Player2.Color);
-                        gm.Player2.Resources.AddEntity(farm);
-                    }
-                        
-                }
-                //This is where it's added the PlayerBase to each player ResourcesManager
-                if ((x == 0 || x == 15) && !Utils.IsDivisibleByX(j, 2) && (char)letterCoordinates[letterInNumber] == middleNumber && createBase)
-                {
-                    addCoordinate = new Coordinate((char)letterCoordinates[letterInNumber], x);
-
-                    char firstLetter = addCoordinate.Letter;
-                    int firstNumber = addCoordinate.Number;
-
-                    List<Coordinate> listCoordinates = new List<Coordinate>();
-
-                    Coordinate secondCoordinate = new Coordinate(++firstLetter, firstNumber);
-                    Coordinate thirdCoordinate = new Coordinate(firstLetter, ++firstNumber);
-                    Coordinate fourthCoordinate = new Coordinate(--firstLetter, firstNumber);
-
-                    listCoordinates.Add(secondCoordinate);
-                    listCoordinates.Add(thirdCoordinate);
-                    listCoordinates.Add(fourthCoordinate);
-
-                    PlayerBase pb;
-
-                    if (x == 0)
-                    {
-                        pb = new PlayerBase(addCoordinate, listCoordinates, gm.Player1.Color);
-                        gm.Player1.Resources.AddEntity(pb);
-                    }else if (x == 15)
-                    {
-                        createBase = false;
-                        pb = new PlayerBase(addCoordinate, listCoordinates, gm.Player2.Color);
-                        gm.Player2.Resources.AddEntity(pb);
-                    }
-                        
-                }*/
+                Coordinate atualCoordinate = new Coordinate();
+                if (letterCoordinates[letterInNumber] != null)
+                    atualCoordinate = new Coordinate((char) letterCoordinates[letterInNumber], x);
                 if (Utils.IsDivisibleByX(j, 2))
                 {
                     Console.Write(lineUp);
@@ -262,17 +188,17 @@ namespace PP_PA
                 }
                 else if (!Utils.IsDivisibleByX(j, 2))
                 {
-                    if (gm.Player1.Resources.IsCoordinateAvailable(new Coordinate((char)letterCoordinates[letterInNumber], x)) != null)
+                    if (gm.Player1.Resources.IsCoordinateAvailable(atualCoordinate) != null)
 
                     {
-                        GameEntity newGameEntity = gm.Player1.Resources.IsCoordinateAvailable(new Coordinate((char)letterCoordinates[letterInNumber], x));
+                        GameEntity newGameEntity = gm.Player1.Resources.IsCoordinateAvailable(atualCoordinate);
                         Utils.ColorWrite(newGameEntity.Color,newGameEntity.Icon);
                         
                     }
-                    else if (gm.Player2.Resources.IsCoordinateAvailable(new Coordinate((char)letterCoordinates[letterInNumber], x)) != null)
+                    else if (gm.Player2.Resources.IsCoordinateAvailable(atualCoordinate) != null)
 
                     {
-                        GameEntity newGameEntity = gm.Player2.Resources.IsCoordinateAvailable(new Coordinate((char)letterCoordinates[letterInNumber], x));
+                        GameEntity newGameEntity = gm.Player2.Resources.IsCoordinateAvailable(atualCoordinate);
                         Utils.ColorWrite(newGameEntity.Color, newGameEntity.Icon);
                     }
                     else
@@ -287,7 +213,6 @@ namespace PP_PA
             }
             Console.WriteLine();
         }
-        
 
         //Function to show the row with Cross and lines
         public void DrawCrossRow(int n)

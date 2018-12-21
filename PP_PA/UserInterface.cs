@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,30 +11,27 @@ namespace PP_PA
     class UserInterface
     {
         private GameManager gm;
-
-        private Player p1;
-        private Player p2;
+        
 
         public void Show()
         {
             gm = new GameManager();
-
-            p1 = gm.Player1;
-            p2 = gm.Player2;
-
+            
             int key = 0;
             
             do
             {
+
+                if (gm.GameFinished)
+                    ShowWinnerUI();
+
                 Console.Clear();
                 Console.WriteLine("------(PROJECT PP)------");
                 Console.WriteLine("1 - START");
                 Console.WriteLine("2 - Set Players usernames");
+                Console.WriteLine("3 - Score Table");
                 Console.WriteLine("0 - EXIT");
                 Console.WriteLine("--------------------------");
-
-                if(gm.GameFinished)
-                    ShowWinnerUI();
 
                 key = int.Parse(Console.ReadLine());
 
@@ -45,6 +43,9 @@ namespace PP_PA
                     case 2:
                         UIUsername();
                         break;
+                    case 3:
+                        ScoreTableUI();
+                        break;
                 }
                 
             } while (key != 0);
@@ -55,9 +56,9 @@ namespace PP_PA
         public void UIUsername()
         {
             Console.Write("Write Player's 1 username: ");
-            p1.Username = Console.ReadLine();
+            gm.Player1.Username = Console.ReadLine();
             Console.Write("\nWrite Player's 2 username: ");
-            p2.Username = Console.ReadLine();
+            gm.Player2.Username = Console.ReadLine();
             
         }
 
@@ -82,9 +83,7 @@ namespace PP_PA
             int n_moves = 0;
 
             if (gm.PlayerTurn == null)
-            {
-                gm.PlayerTurn = p1;
-            }
+                gm.PlayerTurn = gm.Player1;
 
             
             do
@@ -120,7 +119,9 @@ namespace PP_PA
 
                 if (option == "ADD")
                 {
-                    Console.WriteLine("Which coordinate do you want to add?");
+                    if (gm.PlayerTurn.Resources.HasAnyKindOfUnit())
+                        Console.WriteLine("If you want to add a unit you don't need to specify the coordinate, you can write: a,0");
+                    Console.WriteLine("Which coordinate do you want to add? Ex:(letter,number)");
                     coordinate = Console.ReadLine().ToUpper();
 
                     string[] coordinateSplit = coordinate.Split(',');
@@ -135,14 +136,14 @@ namespace PP_PA
                 {
                     isToTrain = true;
                 }
-                else
+                else if(option == "MOVE" || option == "ATTACK")
                 {
                     string firstTextMoveOrAttack = option == "MOVE"
-                        ? "Which coordinate do you want to move?"
-                        : "Select the unit that you want to attack with!";
+                        ? "Which coordinate do you want to move? Ex:(letter,number)"
+                        : "Select the unit that you want to attack with! (letter,number)";
                     string secondTextMoveOrAttack = option == "MOVE"
-                        ? "Where do you want to replace it?"
-                        : "Select the unit that you want to attack!";
+                        ? "Where do you want to replace it? Ex:(letter,number)"
+                        : "Select the unit that you want to attack! (letter,number)";
 
                     Console.WriteLine(firstTextMoveOrAttack);
                     coordinate = Console.ReadLine().ToUpper();
@@ -177,7 +178,7 @@ namespace PP_PA
 
 
                 }
-                else if (optionalCoordinate == null)
+                else if (optionalCoordinate == null && addCoordinate.HasValue)
                 {
                     
                     Console.WriteLine("Which type of unit you want to add?");
@@ -227,11 +228,11 @@ namespace PP_PA
 
                     //TODO : Remove this from where when the update doesn't needs the GameEntity
                     GameEntity ge = null;
-                    if (gm.PlayerTurn == p1)
+                    if (gm.PlayerTurn == gm.Player1)
                     {
                         if (gm.PlayerTurn.Resources.IsCoordinateAvailable(addCoordinate.Value) != null)
                         {
-                            if (gm.PlayerTurn.Resources.IsCoordinateAvailable(moveCoordinate) == null && p2.Resources.IsCoordinateAvailable(moveCoordinate) == null)
+                            if (gm.PlayerTurn.Resources.IsCoordinateAvailable(moveCoordinate) == null && gm.Player2.Resources.IsCoordinateAvailable(moveCoordinate) == null)
                             {
                                 ge = gm.PlayerTurn.Resources.IsCoordinateAvailable(addCoordinate.Value);
                                 if (ge is Building)
@@ -266,11 +267,11 @@ namespace PP_PA
                             errorMessage = "You cannot move the unknown!";
                         }
                     }
-                    else if (gm.PlayerTurn == p2)
+                    else if (gm.PlayerTurn == gm.Player2)
                     {
                         if (gm.PlayerTurn.Resources.IsCoordinateAvailable(addCoordinate.Value) != null)
                         {
-                            if (gm.PlayerTurn.Resources.IsCoordinateAvailable(moveCoordinate) == null && p1.Resources.IsCoordinateAvailable(moveCoordinate) == null)
+                            if (gm.PlayerTurn.Resources.IsCoordinateAvailable(moveCoordinate) == null && gm.Player1.Resources.IsCoordinateAvailable(moveCoordinate) == null)
                             {
                                 ge = gm.PlayerTurn.Resources.IsCoordinateAvailable(addCoordinate.Value);
                                 if (ge is Building)
@@ -343,7 +344,7 @@ namespace PP_PA
                         {
                             Unit playerUnit = playerEntity as Unit;
 
-                            Player enemy = gm.PlayerTurn == p1 ? p2 : p1;
+                            Player enemy = gm.PlayerTurn == gm.Player1 ? gm.Player2 : gm.Player1;
 
                             if (enemy.Resources.IsCoordinateAvailable(moveCoordinate) != null)
                             {
@@ -548,13 +549,13 @@ namespace PP_PA
                         {
                             errorMessage = "There's a unit on that coordinate!";
                         }
-                        else if (gm.PlayerTurn == p1 && p2.Resources.IsCoordinateAvailable(addCoordinate.Value) != null
-                                                     || p2.Resources.IsCoordinateAvailable(secondCoordinate) != null)
+                        else if (gm.PlayerTurn == gm.Player1 && gm.Player2.Resources.IsCoordinateAvailable(addCoordinate.Value) != null
+                                                     || gm.Player2.Resources.IsCoordinateAvailable(secondCoordinate) != null)
                         {
                             errorMessage = "Enemy collision!";
                         }
-                        else if (gm.PlayerTurn == p2 && p1.Resources.IsCoordinateAvailable(addCoordinate.Value) != null
-                                                     || p1.Resources.IsCoordinateAvailable(secondCoordinate) != null)
+                        else if (gm.PlayerTurn == gm.Player2 && gm.Player1.Resources.IsCoordinateAvailable(addCoordinate.Value) != null
+                                                     || gm.Player1.Resources.IsCoordinateAvailable(secondCoordinate) != null)
                         {
                             errorMessage = "Enemy collision!";
                         }
@@ -620,6 +621,25 @@ namespace PP_PA
             
         }
 
-        
+        public void ScoreTableUI()
+        {
+            string exit = "";
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("───────────────SCORE TABLE──────────────");
+                foreach (string line in gm.ScoreTableManager.GetScores())
+                {
+                    string[] lineSplit = line.Split('-');
+                    string playerName = lineSplit[0];
+                    string playerScore = lineSplit[1];
+                    string time = lineSplit[2];
+                    Console.WriteLine("Player: {0}, Score: {1}, Data: {2}",playerName,playerScore,time);
+                }
+                Console.WriteLine("────────────────────────────────────────");
+                exit = Console.ReadLine().ToUpper();
+
+            } while (exit != "EXIT");
+        }
     }
 }

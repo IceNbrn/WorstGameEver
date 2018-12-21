@@ -13,8 +13,6 @@ namespace PP_PA
         private string icon;
         private ConsoleColor color;
         public int Score { get; set; }
-
-        public GameEntity(){ }
         
 
         public GameEntity(Coordinate position, ConsoleColor color)
@@ -36,7 +34,6 @@ namespace PP_PA
             set { position = value; }
         }
 
-
         public string Icon
         {
             get { return icon; }
@@ -52,17 +49,11 @@ namespace PP_PA
         {
             int x = destinationCoordinate.Letter - position.Letter;
             int y = destinationCoordinate.Number - position.Number;
-            /*int x = destinationCoordinate.Letter - actualCoordinate.Letter;
-            int y = destinationCoordinate.Number - actualCoordinate.Number;*/
             int result = x + y;
-            if (result > 0)
-            {
-                return result;
-            }
-            else
-            {
-                return -result;
-            }
+
+            result = result > 0 ? result : -result;
+
+            return result;
         }
 
         public bool TakeDamage(int attackDamage)
@@ -93,6 +84,5 @@ namespace PP_PA
             }
         }
 
-        
     }
 }

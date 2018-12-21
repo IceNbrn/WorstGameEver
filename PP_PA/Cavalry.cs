@@ -18,7 +18,5 @@ namespace PP_PA
             base.Icon = "c";
             
         }
-        
-        
     }
 }

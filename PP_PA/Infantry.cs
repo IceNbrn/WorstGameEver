@@ -15,7 +15,6 @@ namespace PP_PA
             base.AttackRange = 1;   
             base.MovePerCell = 2;
             base.Icon = "i";
-
         }
     }
 }

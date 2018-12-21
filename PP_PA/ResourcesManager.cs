@@ -66,9 +66,18 @@ namespace PP_PA
                     Stable stable = (entity as Stable);
                     if (stable.Work(xUnits) <= coins)
                     {
-                        n_Cavalry += xUnits;
-                        coins -= stable.Work(xUnits);
-                        canWork = true;
+                        if (xUnits <= stable.Capacity)
+                        {
+                            stable.Capacity -= xUnits;
+                            n_Cavalry += xUnits;
+                            coins -= stable.Work(xUnits);
+                            canWork = true;
+                        }
+                        else
+                        {
+                            canWork = false;
+                        }
+                        
                     }
                     else
                     {
@@ -80,9 +89,18 @@ namespace PP_PA
                     ArtilleryFactory artilleryFactory = (entity as ArtilleryFactory);
                     if (artilleryFactory.Work(xUnits) <= coins)
                     {
-                        n_Artillery += xUnits;
-                        coins -= artilleryFactory.Work(xUnits);
-                        canWork = true;
+                        if (xUnits <= artilleryFactory.Capacity)
+                        {
+                            artilleryFactory.Capacity -= xUnits;
+                            n_Artillery += xUnits;
+                            coins -= artilleryFactory.Work(xUnits);
+                            canWork = true;
+                        }
+                        else
+                        {
+                            canWork = false;
+                        }
+                        
                     }
                     else
                     {
@@ -148,6 +166,7 @@ namespace PP_PA
                 return false;
             }
         }
+
         public Coordinate? CanPlaceAroundBuilding(Building building, Player enemyPlayer)
         {
 
@@ -175,17 +194,6 @@ namespace PP_PA
             
             return null;
         }
-        //TODO: This should be removed!
-        public GameEntity GetGameEntity(Coordinate coordinate)
-        {
-            foreach (GameEntity ge in entities)
-            {
-                if (ge.Position.GetLetter() == coordinate.GetLetter() && ge.Position.GetNumber() == coordinate.GetNumber())
-                    return ge;
-                    
-            }
-            return null;
-        }
 
         public GameEntity IsCoordinateAvailable(Coordinate coordinate)
         {
@@ -209,8 +217,6 @@ namespace PP_PA
             
             return list[rndNumber] as Building;
         }
-
-        
 
         public int CountStables()
         {
