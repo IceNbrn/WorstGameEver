@@ -42,11 +42,14 @@ namespace PP_PA
 
             Health -= attackDamage;
 
+            Sound.PlaySound(SoundType.TakingDamage);
+
             UpdateColor(tempHealth);
 
             if (Health <= 0)
             {
                 //If returns true, means that the GameEntity is destroyed
+                Sound.PlaySound(SoundType.Dying);
                 return true;
             }
             //If returns false, the GameEntity still alive

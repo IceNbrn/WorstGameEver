@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sound.cs" />
     <Compile Include="Units\Artillery.cs" />
     <Compile Include="Buildings\ArtilleryFactory.cs" />
     <Compile Include="Buildings\Barrack.cs" />

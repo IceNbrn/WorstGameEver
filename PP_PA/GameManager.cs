@@ -35,6 +35,7 @@ namespace PP_PA
         public void SetGameOver()
         {
             this.winner = playerTurn;
+            Sound.PlaySound(SoundType.WonGame);
             GameFinished = true;
             ScoreTableManager.AddScoreToFile(playerTurn);
         }
