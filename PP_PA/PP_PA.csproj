@@ -44,25 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Artillery.cs" />
-    <Compile Include="ArtilleryFactory.cs" />
-    <Compile Include="Barrack.cs" />
+    <Compile Include="Units\Artillery.cs" />
+    <Compile Include="Buildings\ArtilleryFactory.cs" />
+    <Compile Include="Buildings\Barrack.cs" />
     <Compile Include="Building.cs" />
-    <Compile Include="Cavalry.cs" />
+    <Compile Include="Units\Cavalry.cs" />
     <Compile Include="Coin.cs" />
     <Compile Include="Coordinate.cs" />
-    <Compile Include="Farm.cs" />
+    <Compile Include="Buildings\Farm.cs" />
     <Compile Include="GameEntity.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="GameManager.cs" />
-    <Compile Include="Infantry.cs" />
+    <Compile Include="Units\Infantry.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="PlayerBase.cs" />
+    <Compile Include="Buildings\PlayerBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourcesManager.cs" />
     <Compile Include="ScoreTableManager.cs" />
-    <Compile Include="Stable.cs" />
+    <Compile Include="Buildings\Stable.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="UserInterface.cs" />
     <Compile Include="Utils.cs" />
@@ -70,5 +70,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

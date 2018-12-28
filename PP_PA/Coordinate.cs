@@ -16,7 +16,17 @@ namespace PP_PA
             this.letter = letter;
             this.number = number;
         }
-        
+
+        public int Distance(Coordinate destinationCoordinate)
+        {
+            int x = destinationCoordinate.Letter - letter;
+            int y = destinationCoordinate.Number - number;
+            int result = x + y;
+
+            result = result > 0 ? result : -result;
+
+            return result;
+        }
 
         public char Letter
         {

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PP_PA
+namespace PP_PA.Buildings
 {
     class PlayerBase : Building
     {
         public PlayerBase(Coordinate _position, List<Coordinate> otherCoordinates, ConsoleColor color) : base(_position, otherCoordinates, color)
         {
-            //TODO: this is not the actual health
-            base.Health = 24;
+            base.Health = 100;
             base.Icon = "O";
         }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PP_PA
+namespace PP_PA.Units
 {
     public class Cavalry : Unit
     {

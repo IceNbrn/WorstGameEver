@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PP_PA
+namespace PP_PA.Buildings
 {
     class Farm : Building
     {
@@ -14,7 +14,7 @@ namespace PP_PA
         {
             base.Health = 24;
             base.Icon = "F";
-            base.CostToBuild = 0;
+            base.CostToBuild = 20;
         }
 
         public int Work()

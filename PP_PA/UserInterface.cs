@@ -5,6 +5,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using PP_PA.Buildings;
+using PP_PA.Units;
 
 namespace PP_PA
 {
@@ -32,6 +34,7 @@ namespace PP_PA
                 Console.WriteLine("3 - Score Table");
                 Console.WriteLine("0 - EXIT");
                 Console.WriteLine("--------------------------");
+                
 
                 key = int.Parse(Console.ReadLine());
 
@@ -439,6 +442,7 @@ namespace PP_PA
 
                     if (errorMessage != null)
                     {
+                        
                         Console.WriteLine(errorMessage);
                         errorMessage = null;
                     }

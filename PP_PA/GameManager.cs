@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PP_PA.Buildings;
 
 namespace PP_PA
 {
@@ -27,9 +28,6 @@ namespace PP_PA
             CreatePlayerBase(p1, true);
             CreatePlayerBase(p2, false);
 
-            CreatePlayerFarm(p1, true);
-            CreatePlayerFarm(p2, false);
-
             ScoreTableManager = new ScoreTableManager();
             
         }
@@ -44,14 +42,37 @@ namespace PP_PA
 
         public void CreatePlayerBase(Player p,bool isP1)
         {
-            Coordinate addCoordinate = new Coordinate();
-            if (isP1)
-                addCoordinate = new Coordinate('M', 0);
-            else
-                addCoordinate = new Coordinate('M', 15);
+            
+            Coordinate coordinate = new Coordinate();
+            Coordinate p2Coordinate = new Coordinate();
 
-            char firstLetter = addCoordinate.Letter;
-            int firstNumber = addCoordinate.Number;
+            Random rndLetter;
+            rndLetter = new Random();
+            Random rndNumber;
+            rndNumber = new Random();
+            int letter = 0;
+            int number = 0;
+
+            if (isP1)
+            {
+                letter = rndLetter.Next(65, 89);
+                number = rndNumber.Next(0, 15);
+                coordinate = new Coordinate((char)letter,number);
+            }
+            else
+            {
+                do
+                {
+                    letter = rndLetter.Next(65, 89);
+                    number = rndNumber.Next(0, 15);
+                    coordinate = new Coordinate((char)letter, number);
+                } while (coordinate.Distance(p1.Resources.GetRandomBuilding<PlayerBase>().Position) < 20);
+                
+            }
+                
+
+            char firstLetter = coordinate.Letter;
+            int firstNumber = coordinate.Number;
 
             List<Coordinate> listCoordinates = new List<Coordinate>();
 
@@ -63,31 +84,10 @@ namespace PP_PA
             listCoordinates.Add(thirdCoordinate);
             listCoordinates.Add(fourthCoordinate);
 
-            PlayerBase pb = new PlayerBase(addCoordinate, listCoordinates, p.Color);
+            PlayerBase pb = new PlayerBase(coordinate, listCoordinates, p.Color);
             p.Resources.AddEntity(pb);
         }
-
-        public void CreatePlayerFarm(Player p, bool isP1)
-        {
-            Coordinate addCoordinate = new Coordinate();
-            if (isP1)
-                addCoordinate = new Coordinate('A', 0);
-            else
-                addCoordinate = new Coordinate('A', 16);
-
-            char firstLetter = addCoordinate.Letter;
-            int firstNumber = addCoordinate.Number;
-
-            List<Coordinate> listCoordinates = new List<Coordinate>();
-
-            Coordinate secondCoordinate = new Coordinate(++firstLetter, firstNumber);
-
-            listCoordinates.Add(secondCoordinate);
-
-            Farm farm = new Farm(addCoordinate, listCoordinates, p.Color);
-            p.Resources.AddEntity(farm);
-        }
-        
+       
         public int NewTurn()
         {
             turn++;
