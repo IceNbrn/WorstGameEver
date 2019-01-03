@@ -127,13 +127,26 @@ namespace PP_PA
                     Console.WriteLine("Which coordinate do you want to add? Ex:(letter,number)");
                     coordinate = Console.ReadLine().ToUpper();
 
-                    string[] coordinateSplit = coordinate.Split(',');
+                    
 
                     //TODO: Needs a try here
-                    char letter = Convert.ToChar(coordinateSplit[0]);
-                    int number = Int32.Parse(coordinateSplit[1]);
+                    try
+                    {
+                        string[] coordinateSplit = coordinate.Split(',');
 
-                    addCoordinate = new Coordinate(letter, number);
+                        char letter = Convert.ToChar(coordinateSplit[0]);
+                        int number = Int32.Parse(coordinateSplit[1]);
+
+                        addCoordinate = new Coordinate(letter, number);
+                    }
+                    catch (FormatException e)
+                    {
+                        Utils.ColorWrite(ConsoleColor.Red, "You need to write letter,number");
+                        Console.WriteLine();
+                    }
+                    
+
+                    
                 }
                 else if (option == "TRAIN UNITS")
                 {
@@ -151,16 +164,29 @@ namespace PP_PA
                     Console.WriteLine(firstTextMoveOrAttack);
                     coordinate = Console.ReadLine().ToUpper();
 
-                    string[] coordinateSplit = coordinate.Split(',');
+                    try
+                    {
+                        string[] coordinateSplit = coordinate.Split(',');
 
-                    char letter = Convert.ToChar(coordinateSplit[0]);
-                    int number = Int32.Parse(coordinateSplit[1]);
+                        char letter = Convert.ToChar(coordinateSplit[0]);
+                        int number = Int32.Parse(coordinateSplit[1]);
 
-                    addCoordinate = new Coordinate(letter, number);
-                    
-                    Console.WriteLine(secondTextMoveOrAttack);
+                        addCoordinate = new Coordinate(letter, number);
 
-                    optionalCoordinate = Console.ReadLine().ToUpper();
+                        Console.WriteLine(secondTextMoveOrAttack);
+
+                        optionalCoordinate = Console.ReadLine().ToUpper();
+                    }
+                    catch (FormatException e)
+                    {
+                        Utils.ColorWrite(ConsoleColor.Red, "You need to write letter,number");
+                        Console.WriteLine();
+                    }
+
+                }
+                else if (option == "EXIT")
+                {
+                    break;
                 }
 
                 if (isToTrain)
@@ -219,11 +245,24 @@ namespace PP_PA
                 
                 if (option == "MOVE" && optionalCoordinate != null && addCoordinate.HasValue && (!field.IsOutOfBorders(addCoordinate.Value)))
                 {
-                    string[] optionalCoordinateSplit = optionalCoordinate.Split(',');
+                    char newLetter = ' ';
+                    int newNumber = 0;
+                    try
+                    {
+                        string[] optionalCoordinateSplit = optionalCoordinate.Split(',');
 
-                    char newLetter = Convert.ToChar(optionalCoordinateSplit[0]);
-                    int newNumber = Int32.Parse(optionalCoordinateSplit[1]);
+                        newLetter = Convert.ToChar(optionalCoordinateSplit[0]);
+                        newNumber = Int32.Parse(optionalCoordinateSplit[1]);
+                        
+                    }
+                    catch (FormatException e)
+                    {
+                        Utils.ColorWrite(ConsoleColor.Red, "You need to write letter,number");
+                        Console.WriteLine();
+                    }
+
                     Coordinate moveCoordinate = new Coordinate(newLetter, newNumber);
+
                     if (field.IsOutOfBorders(moveCoordinate))
                     {
                         Console.WriteLine("You can't move a unit to out of the field!");
