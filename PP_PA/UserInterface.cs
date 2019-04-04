@@ -123,7 +123,7 @@ namespace PP_PA
                 if (option == "ADD")
                 {
                     if (gm.PlayerTurn.Resources.HasAnyKindOfUnit())
-                        Console.WriteLine("If you want to add a unit you don't need to specify the coordinate, you can write: a,0");
+                        Console.WriteLine("If you want to add a unit you don't need to specify the coordinate, you can write: b,2");
                     Console.WriteLine("Which coordinate do you want to add? Ex:(letter,number)");
                     coordinate = Console.ReadLine().ToUpper();
 

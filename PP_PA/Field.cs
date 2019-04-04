@@ -130,6 +130,7 @@ namespace PP_PA
         
         public void Update()
         {
+            Console.Clear();
             Create();
         }
 

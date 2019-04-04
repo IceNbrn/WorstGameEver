@@ -11,7 +11,6 @@ namespace PP_PA
         
         static void Main(string[] args)
         {
-            
             UserInterface ui = new UserInterface();
 
             ui.Show();
